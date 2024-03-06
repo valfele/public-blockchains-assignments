@@ -24,7 +24,7 @@ const extractQuestion = (quizContract, receipt) => {
     });
 
     // console.log('LOGS');
-    // console.log(logs);
+    // console.log("logs from quiz_helper file", logs);
 
     // Find the QuestionAsked event
     const questionEvent = logs.find((log) => log.name === "QuestionAsked");

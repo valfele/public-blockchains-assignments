@@ -8,7 +8,6 @@
 /////////////////////
 
 const path = require("path");
-
 const ethers = require("ethers");
 
 // Adjust path to your .env file.
@@ -16,6 +15,13 @@ const pathToDotEnv = path.join(__dirname, "..", "..", ".env");
 // console.log(pathToDotEnv);
 require("dotenv").config({ path: pathToDotEnv });
 
+// console.log(pathToDotEnv);
+
+/*
+this line of code imports the getUserAnswer and extractQuestion functions from 
+the "quiz_helper.js" module and assigns them to constants with the same names, 
+making them available for use in the current script or module.
+*/
 const { getUserAnswer, extractQuestion } =
     require(path.join(__dirname, "quiz_helper.js"));
 
@@ -44,12 +50,23 @@ async function main() {
     // A. Ask question and get a transaction receipt.
     // Hint: method `askQuestion()`
 
-    // Your code here.
+    const receipt = await quizContract.askQuestion();
+
+    console.log(receipt.hash)
+
+    const receipt2 = await sepoliaProvider.waitForTransaction(receipt.hash);
+
+    console.log("Transaction receipt: ", receipt);
+    console.log("receipt2: ", receipt2);
+
 
     // From the transaction receipt we can extract useful information, such as
     // as the question's text and id that were stored in the logs
     // (we will understand logs in detail later in the course).
-    const { text, id } = extractQuestion(quizContract, receipt);
+    const { text, id } = extractQuestion(quizContract, receipt2);
+
+    console.log('Question text: ', text);
+    console.log("Question ID: ", id);
 
     // Now YOU answer the question!
     // Capture user input from the terminal.
@@ -58,12 +75,14 @@ async function main() {
     // B. Send the answer to the smart contract.
     // Hint: method `answerQuestion`.
 
-    // Your code here.
+    const answer = await quizContract.answerQuestion(id, userAnswer);
 
+    console.log("answer: ", answer);
     // C. Optional. Verify that the answer is correctly stored.
     // Hint: method `getAnswer(questionId)`
 
-    // Your code here.
+    const verify = await quizContract.getAnswer(id);
+    console.log("verify: ", verify);
 }
 
 
