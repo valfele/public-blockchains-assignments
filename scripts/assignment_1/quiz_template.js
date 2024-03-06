@@ -52,12 +52,12 @@ async function main() {
 
     const receipt = await quizContract.askQuestion();
 
-    console.log(receipt.hash)
+    console.log("waiting for the transaction approval...")
 
     const receipt2 = await sepoliaProvider.waitForTransaction(receipt.hash);
 
-    console.log("Transaction receipt: ", receipt);
-    console.log("receipt2: ", receipt2);
+    // console.log("Transaction receipt: ", receipt);
+    // console.log("receipt2: ", receipt2);
 
 
     // From the transaction receipt we can extract useful information, such as
@@ -77,12 +77,13 @@ async function main() {
 
     const answer = await quizContract.answerQuestion(id, userAnswer);
 
-    console.log("answer: ", answer);
+    // console.log("answer: ", answer);
     // C. Optional. Verify that the answer is correctly stored.
     // Hint: method `getAnswer(questionId)`
 
     const verify = await quizContract.getAnswer(id);
-    console.log("verify: ", verify);
+    console.log("the answer is: ", verify[1]);
+    console.log("the question is: ", verify[0]);
 }
 
 
