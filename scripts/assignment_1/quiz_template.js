@@ -82,8 +82,8 @@ async function main() {
     // Hint: method `getAnswer(questionId)`
 
     const verify = await quizContract.getAnswer(id);
-    console.log("the answer is: ", verify[1]);
-    console.log("the question is: ", verify[0]);
+    console.log("your answer: ", verify[0]);
+    console.log("the answer is correct? ", verify[1]);
 }
 
 
