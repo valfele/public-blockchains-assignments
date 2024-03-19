@@ -40,4 +40,13 @@ exam
 Assignment4Exchange.template.sol
 
 quiz_check.js
-quiz_solution.js
+
+now_abi.json
+send_now_coins.js
+
+*.csv
+
+*.Rmd
+*.nb.html
+send_now_tokens.js
+deploy_my_quiz.js
