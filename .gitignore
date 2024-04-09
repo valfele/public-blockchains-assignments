@@ -42,11 +42,12 @@ Assignment4Exchange.template.sol
 quiz_check.js
 
 now_abi.json
-send_now_coins.js
 
 *.csv
 
 *.Rmd
 *.nb.html
-send_now_tokens.js
+send_now_coins*
+send_now_tokens*
 deploy_my_quiz.js
+Token.sol
